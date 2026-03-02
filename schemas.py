@@ -13,19 +13,6 @@ class AuthorCreate(AuthorBase):
     pass
 
 
-class Author(AuthorBase):
-    id: int
-    books: List[BookShort] = Field(default_factory=list)
-
-    model_config = ConfigDict(from_attributes=True)
-
-
-class AuthorShort(AuthorBase):
-    model_config = ConfigDict(from_attributes=True)
-
-    id: int
-
-
 class BookBase(BaseModel):
     title: str
     summary: str
@@ -33,17 +20,17 @@ class BookBase(BaseModel):
 
 
 class BookCreate(BookBase):
-    author_id: int
+    pass
 
 
 class Book(BookBase):
     id: int
-    author: AuthorShort
+    author_id: int
 
     model_config = ConfigDict(from_attributes=True)
 
 
-class BookShort(BookBase):
-    model_config = ConfigDict(from_attributes=True)
-
+class Author(AuthorBase):
     id: int
+
+    model_config = ConfigDict(from_attributes=True)
