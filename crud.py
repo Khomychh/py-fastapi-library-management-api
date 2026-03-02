@@ -16,7 +16,9 @@ def create_author(db: Session, author: schemas.AuthorCreate) -> models.DBAuthor:
     return db_author
 
 
-def get_author(db: Session, author_id: int) -> models.DBAuthor | None:
+def get_author(db: Session, author_id: int, author_name: str) -> models.DBAuthor | None:
+    if author_name:
+        return db.query(models.DBAuthor).filter(models.DBAuthor.name == author_name).first()
     return db.query(models.DBAuthor).filter(models.DBAuthor.id == author_id).first()
 
 
